@@ -5,6 +5,15 @@
   <link rel="stylesheet" href="./styles/style.css">
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
   <script src="https://kit.fontawesome.com/83d4c8d89f.js" crossorigin="anonymous"></script>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SNX27VCYT3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-SNX27VCYT3');
+  </script>
 </head>
 
 <body>
@@ -12,7 +21,7 @@
 <!-- particles.js container --> 
 
 
-<div id="particles-js">
+<div id="particles-js" onselectstart="return false">
 <div class="mainPageName">
   <h1 class="ssp upper">Ryan Schulz</h1>
   <h3 class="ssp lower">Software Developer</h3>
@@ -21,12 +30,12 @@
 
 <img src="./images/sfportrait.webp" alt="Portrait in San Francisco, CA" class="centerimage">
 
-  <a class="lefticon" onclick="location.href='https://github.com/ryanschulz46'">
-    <i class="fa fa-github-square fa-5x" aria-hidden="true"></i>
+  <a class="lefticon"  onclick="window.open('https://www.github.com/ryanschulz46','_blank', 'noopener')" >
+    <i class="fa fa-github-square fa-7x" ></i>
   </a>
 
-<a class="righticon" onclick="location.href='https://www.linkedin.com/in/ryanschulz46'">
-  <i class="fab fa-linkedin fa-5x"></i>
+<a class="righticon" onclick="window.open('https://www.linkedin.com/in/ryanschulz46','_blank', 'noopener')" >
+  <i class="fab fa-linkedin fa-7x" aria-hidden="true"></i>
 </a>
 </div>
 

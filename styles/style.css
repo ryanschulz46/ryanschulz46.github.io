@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v7.0.29,
+* Autoprefixer: v9.7.6
+* Browsers: last 4 version
+*/
+
 /* ---- reset ---- */ 
 body{ 
 
@@ -24,7 +31,11 @@ canvas{
     background-image: url(""); 
     background-repeat: no-repeat;
     background-size: cover; 
-    background-position: 50% 50%; 
+    background-position: 50% 50%;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
 }
 
 /* ---- stats.js ---- */ 
@@ -70,7 +81,10 @@ canvas{
     font-family: 'Source Sans Pro', sans-serif;
     background:rgba(255,255,255,0);
     text-align:center;
-    
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
 }
 
 
@@ -79,7 +93,9 @@ canvas{
     position: absolute;
     left: 50%;
     top: 10%;
-    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
     padding: 0px;
 }
 
@@ -89,7 +105,9 @@ canvas{
     position: absolute;
     top: 80%;
     left: calc(50% - 100px);
-    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
     padding: 0px;
 }
 
@@ -97,7 +115,9 @@ canvas{
     position: absolute;
     top: 80%;
     left: calc(50% + 100px);
-    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
     padding: 0px;
 }
 
@@ -108,7 +128,9 @@ canvas{
         top: 40%;
         left: 50%;
         width: 400px;
-        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+                transform: translate(-50%, -50%);
         padding: 0px;
     }
 
@@ -129,7 +151,9 @@ canvas{
         top: 40%;
         left: 50%;
         width: 250px;
-        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+                transform: translate(-50%, -50%);
         padding: 0px;
     }
 
@@ -150,7 +174,9 @@ canvas{
         top: 40%;
         left: 50%;
         width: 175px;
-        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+                transform: translate(-50%, -50%);
         padding: 0px;
     }
 
@@ -172,7 +198,9 @@ canvas{
         top: 50%;
         left: 50%;
         width: 150px;
-        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+                transform: translate(-50%, -50%);
         padding: 0px;
     }
 
@@ -184,6 +212,4 @@ canvas{
     .lower {
         font-size: 2em;
     }
-}
-
 }
