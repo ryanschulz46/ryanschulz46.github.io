@@ -1,26 +1,105 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useMemo, useState } from "react";
+import Particles, { initParticlesEngine } from "@tsparticles/react";
+import { loadSlim } from "@tsparticles/slim";
+import ReactGA from "react-ga4";
+import { type ISourceOptions } from "@tsparticles/engine";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faSquareGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons"
+import particlesConfig from './assets/particles.json';
+import particlesConfigMobile from './assets/particles-mobile.json';
+import image from "./images/sfportrait.webp"
+import './App.css'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+const App = () => {
+  const [init, setInit] = useState(false);
+
+  // this should be run only once per application lifetime
+  useEffect(() => {
+    initParticlesEngine(async (engine) => {
+      await loadSlim(engine);
+    }).then(() => {
+      setInit(true);
+    });
+  }, []);
+
+  const particlesLoaded = async (): Promise<void> => {
+    console.log("Loaded Particles");
+  };
+
+  const options: ISourceOptions = useMemo(
+    () => {
+      const touch = matchMedia('(hover: none)').matches;
+      console.log("isTouchDevice: ", touch);
+      const config = touch ? particlesConfigMobile : particlesConfig;
+      return config as ISourceOptions
+    },
+    [],
   );
-}
+
+  if (init) {
+    return (
+      <>
+        <Particles
+          id="tsparticles"
+          particlesLoaded={particlesLoaded}
+          options={options}
+        />
+
+        < div className="container">
+          <div className="card">
+
+            <img
+              src={image}
+              alt="Portrait in San Francisco, CA"
+              className="centerimage"
+            />
+
+            <h1 className="ssp upper">Ryan Schulz</h1>
+            <h3 className="ssp lower">Software Developer | New York City</h3>
+
+            <div className="iconContainer">
+              <FontAwesomeIcon
+                className="icon left"
+                icon={faLinkedin}
+                size="4x"
+                onClick={() => {
+                  ReactGA.event({
+                    category: 'LinkedIn',
+                    action: 'Clicked',
+                    label: 'LinkedIn',
+                  });
+                  window.open(
+                    "https://www.linkedin.com/in/ryanschulz46",
+                    "_blank",
+                    "noopener"
+                  )
+                }}
+              />
+              <FontAwesomeIcon
+                className="icon right"
+                icon={faSquareGithub}
+                size="4x"
+                onClick={() => {
+                  ReactGA.event({
+                    category: 'Github',
+                    action: 'Clicked',
+                    label: 'Github',
+                  });
+                  window.open(
+                    "https://www.github.com/ryanschulz46",
+                    "_blank",
+                    "noopener"
+                  )
+                }}
+              />
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  }
+
+  return <></>;
+};
 
 export default App;

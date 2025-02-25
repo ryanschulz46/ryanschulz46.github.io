@@ -1,38 +1,86 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+
+#tsparticles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+.container {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  text-align: center;
+  pointer-events: none;
+
+
 }
 
-.App-link {
-  color: #61dafb;
+.card {
+  background-color: rgba(255, 255, 255, 0.85);
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  pointer-events: none;
+  z-index: 1;
+  width: clamp(250px, 30vw, 400px);
+  padding: clamp(1rem, 3vw, 5rem);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.ssp {
+  color: #000000;
+  font-family: 'Source Sans Pro', sans-serif;
+  background: rgba(255, 255, 255, 0);
+  text-align: center;
+  user-select: none;
+  margin: 0.5rem;
+  z-index: 1;
+}
+
+.ssp.upper {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+}
+
+.ssp.lower {
+  font-size: clamp(1rem, 1.5vw, 1.5rem);
+}
+
+.centerimage {
+  height: auto;
+  z-index: 1;
+  width: clamp(180px, 20vw, 325px);
+  margin: 5px;
+}
+
+.iconContainer {
+  position: relative;
+  margin-top: 2rem;
+  width: 50%;
+  min-width: 175px;
+  height: 4rem;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 1;
+  pointer-events: auto;
+}
+
+.icon {
+  position: absolute;
+  top: 0;
+}
+
+.icon:hover {
+  color: grey;
+}
+
+.icon.left {
+  left: 0;
+}
+
+.icon.right {
+  right: 0;
 }
