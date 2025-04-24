@@ -4,7 +4,7 @@ import { loadSlim } from "@tsparticles/slim";
 import ReactGA from "react-ga4";
 import { type ISourceOptions } from "@tsparticles/engine";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faSquareGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons"
+import { faLinkedin } from "@fortawesome/free-brands-svg-icons"
 import particlesConfig from './assets/particles.json';
 import particlesConfigMobile from './assets/particles-mobile.json';
 import image from "./images/sfportrait.webp"
@@ -15,11 +15,8 @@ const App = () => {
 
   // this should be run only once per application lifetime
   useEffect(() => {
-    initParticlesEngine(async (engine) => {
-      await loadSlim(engine);
-    }).then(() => {
-      setInit(true);
-    });
+    initParticlesEngine(engine => loadSlim(engine))
+      .then(() => setInit(true));
   }, []);
 
   const particlesLoaded = async (): Promise<void> => {
@@ -36,16 +33,23 @@ const App = () => {
     [],
   );
 
-  if (init) {
-    return (
-      <>
-        <Particles
-          id="tsparticles"
-          particlesLoaded={particlesLoaded}
-          options={options}
-        />
+  // Handler to open LinkedIn and track click
+  const openLinkedIn = () => {
+    ReactGA.event({ category: 'LinkedIn', action: 'Clicked', label: 'LinkedIn' });
+    window.open("https://www.linkedin.com/in/ryanschulz46", "_blank", "noopener");
+  };
 
-        < div className="container">
+  if (!init) return null;
+
+  return (
+    <>
+      <Particles
+        id="tsparticles"
+        particlesLoaded={particlesLoaded}
+        options={options}
+      />
+      <div className="scale-wrapper">
+        <div className="container">
           <div className="card">
 
             <img
@@ -55,51 +59,21 @@ const App = () => {
             />
 
             <h1 className="ssp upper">Ryan Schulz</h1>
-            <h3 className="ssp lower">Software Developer | New York City</h3>
-
+            <h3 className="ssp lower">Software Developer</h3>
+            <h3 className="ssp lower">New York City</h3>
             <div className="iconContainer">
               <FontAwesomeIcon
-                className="icon left"
+                className="icon center"
                 icon={faLinkedin}
                 size="4x"
-                onClick={() => {
-                  ReactGA.event({
-                    category: 'LinkedIn',
-                    action: 'Clicked',
-                    label: 'LinkedIn',
-                  });
-                  window.open(
-                    "https://www.linkedin.com/in/ryanschulz46",
-                    "_blank",
-                    "noopener"
-                  )
-                }}
-              />
-              <FontAwesomeIcon
-                className="icon right"
-                icon={faSquareGithub}
-                size="4x"
-                onClick={() => {
-                  ReactGA.event({
-                    category: 'Github',
-                    action: 'Clicked',
-                    label: 'Github',
-                  });
-                  window.open(
-                    "https://www.github.com/ryanschulz46",
-                    "_blank",
-                    "noopener"
-                  )
-                }}
+                onClick={openLinkedIn}
               />
             </div>
           </div>
         </div>
-      </>
-    );
-  }
-
-  return <></>;
+      </div>
+    </>
+  );
 };
 
 export default App;

@@ -1,3 +1,11 @@
+:root {
+  --design-w: 1440;
+  --design-h: 900;
+  --scale-w: calc(100vw / var(--design-w));
+  --scale-h: calc(100vh / var(--design-h));
+  --scale: min(var(--scale-w), var(--scale-h));
+}
+
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
 
 #tsparticles {
@@ -9,6 +17,17 @@
   z-index: 0;
 }
 
+.scale-wrapper {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.scale-wrapper .container {
+  transform: scale(var(--scale));
+  transform-origin: center center;
+}
+
 .container {
   min-height: 100vh;
   display: flex;
@@ -17,8 +36,6 @@
   justify-content: center;
   text-align: center;
   pointer-events: none;
-
-
 }
 
 .card {
@@ -27,8 +44,8 @@
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   pointer-events: none;
   z-index: 1;
-  width: clamp(250px, 30vw, 400px);
-  padding: clamp(1rem, 3vw, 5rem);
+  width: clamp(250px, 30vmin, 400px);
+  padding: clamp(1rem, 3vmin, 5rem);
 }
 
 .ssp {
@@ -42,17 +59,22 @@
 }
 
 .ssp.upper {
-  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-size: clamp(2.5rem, 5vmin, 4rem);
 }
 
 .ssp.lower {
-  font-size: clamp(1rem, 1.5vw, 1.5rem);
+  font-size: clamp(1rem, 3vmin, 1.5rem);
+}
+
+/* Keep text on one line */
+.ssp.upper, .ssp.lower {
+  white-space: nowrap;
 }
 
 .centerimage {
   height: auto;
   z-index: 1;
-  width: clamp(180px, 20vw, 325px);
+  width: clamp(180px, 20vmin, 325px);
   margin: 5px;
 }
 
@@ -75,6 +97,11 @@
 
 .icon:hover {
   color: grey;
+}
+
+.icon.center {
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .icon.left {
