@@ -4,16 +4,48 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import ReactGA from "react-ga4";
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 
-ReactGA.initialize('G-SNX27VCYT3');
+let gaConfig = {};
+if (process.env.REACT_APP_GA_DEBUG === 'true') {
+  console.log("GA debug mode")
+  gaConfig = {
+    gaOptions: {
+      debug_mode: true,
+    },
+    gtagOptions: {
+      debug_mode: true,
+    }
+  }
+}
+
+ReactGA.initialize('G-SNX27VCYT3', { ...gaConfig })
 ReactGA.send('pageview');
+
+function RedirectHandler() {
+  const location = useLocation();
+  useEffect(() => {
+    ReactGA.event({
+      category: 'Redirect',
+      action: 'SubpathVisit',
+      label: location.pathname
+    });
+  }, [location.pathname]);
+  return <Navigate to="/" replace />;
+}
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<App />} />
+        <Route path="*" element={<RedirectHandler />} />
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>
 );
 

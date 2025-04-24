@@ -35,7 +35,7 @@ const App = () => {
 
   // Handler to open LinkedIn and track click
   const openLinkedIn = () => {
-    ReactGA.event({ category: 'LinkedIn', action: 'Clicked', label: 'LinkedIn' });
+    ReactGA.event({ category: 'Outbound', action: 'Click', label: 'https://www.linkedin.com/in/ryanschulz46', transport: "beacon"});
     window.open("https://www.linkedin.com/in/ryanschulz46", "_blank", "noopener");
   };
 
